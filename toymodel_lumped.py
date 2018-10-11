@@ -5,8 +5,6 @@ import ConfigParser
 from datetime import datetime
 from datetime import timedelta
 import xarray as xr
-import pandas as pd
-import rasterio
 
 
 class mytoymodel(object):
@@ -45,23 +43,16 @@ class mytoymodel(object):
         self.var_in = ['Area', 'prec']
         self.var_out = ["Q"]
 
-        # Import mask for input datasets
-        with rasterio.open('rm_mask.tif') as src:
-            mask = src.read(1)
-            mask = np.where(mask > 1, 0, 1)
-            self.mask = mask
-
         #Import input datasets (precipitation) calculate 1 value for each timestep (lumped model)
-        self.ds = xr.open_dataset('precipitation_2001to2010.nc')
+        self.ds = xr.open_dataset('precipitation.nc')
 
-        prec_mask = self.ds['precipitation'] * self.mask
-        prec_sum = prec_mask.sum(dim='lat')
+        prec = self.ds['precipitation']
+        prec_sum = prec.sum(dim='lat')
         prec_sum = prec_sum.sum(dim='lon')
         prec_sum.reset_coords(drop=True)
         self.prec_sum = prec_sum
 
         #Create empty array for modelrun
-        y, x = mask.shape
         self.Q = np.zeros(0)
         self.prec = np.array(self.prec_sum.values[0])
 
