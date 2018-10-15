@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='toymodel_lumped_bmi',
     version='',
-    packages=['', 'toymodel'],
+    packages=['', 'toymodel_lumped'],
     url='',
     license='',
     author='jerom',
