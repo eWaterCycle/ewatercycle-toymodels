@@ -1,9 +1,9 @@
-from distutils.core import setup
+from setuptools import setup
 
 setup(
-    name='toymodel_lumped_bmi',
+    name='toymodel_lumped',
     version='',
-    packages=['', 'toymodel_lumped'],
+    packages=[''],
     url='',
     license='',
     author='jerom',
