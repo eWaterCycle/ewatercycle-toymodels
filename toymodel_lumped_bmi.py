@@ -1,5 +1,5 @@
 import os
-from toymodel_lumped import mytoymodel
+import toymodel_lumped
 import bmi
 
 
@@ -21,7 +21,7 @@ class toy_bmi(bmi.Bmi):
         self.datadir = os.path.dirname(filename)
         inifile = os.path.basename(filename)
 
-        self.toym = mytoymodel(inifile)
+        self.toym = toymodel_lumped.mytoymodel(inifile)
         self.toym.read_config()
 
 
