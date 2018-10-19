@@ -19,9 +19,8 @@ class toy_bmi(bmi.Bmi):
         """
         self.filename = filename
         self.datadir = os.path.dirname(filename)
-        inifile = os.path.basename(filename)
 
-        self.toym = toymodel_lumped.mytoymodel(inifile)
+        self.toym = toymodel_lumped.mytoymodel(filename)
         self.toym.read_config()
 
 
