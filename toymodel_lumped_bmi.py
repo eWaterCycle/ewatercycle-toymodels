@@ -18,8 +18,11 @@ class toy_bmi(bmi.Bmi):
         `filename`.
         """
         self.filename = filename
+        print filename
+        
         self.datadir = os.path.dirname(filename)
-
+        print os.path.exists(filename)
+        
         self.toym = toymodel_lumped.mytoymodel(filename)
         self.toym.read_config()
 
