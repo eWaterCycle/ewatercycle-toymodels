@@ -274,7 +274,7 @@ class toy_bmi(bmi.Bmi):
         if numpy.any(indices != 0):
           return  "index needs to be 0"
         if var_name == 'Area':
-            return numpy.array[self.toym.Area]*len(indices))
+            return numpy.array([self.toym.Area]*len(indices))
 
         if var_name == 'prec':
             return numpy.array([self.toym.prec]*len(indices))
