@@ -234,9 +234,8 @@ class toy_bmi(bmi.Bmi):
     def get_var_grid(self, var_name):
         """Get grid identifier for the given variable.
         """
-        log = 'No grid identifiers available'
 
-        return log
+        return 0
 
 
     """
