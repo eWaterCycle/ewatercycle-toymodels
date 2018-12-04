@@ -1,7 +1,7 @@
 import os
 import toymodel_lumped
 import bmi
-
+import numpy
 
 #Use CSDMS standard variable names
 class toy_bmi(bmi.Bmi):
