@@ -141,7 +141,7 @@ class toy_bmi(bmi.Bmi):
     def get_grid_rank(self, grid_id):
         """Get number of dimensions of the computational grid.
         """
-        return 0
+        return 1
 
 
     def get_grid_size(self, grid_id):
@@ -271,9 +271,18 @@ class toy_bmi(bmi.Bmi):
     def get_value_at_indices(self, var_name, indices):
         """Get values at particular indices.
         """
-        log = 'No indices in lumped model'
+        if numpy.any(indices != 0):
+          return  "index needs to be 0"
+        if var_name == 'Area':
+            return numpy.array[self.toym.Area]*len(indices))
 
-        return log
+        if var_name == 'prec':
+            return numpy.array([self.toym.prec]*len(indices))
+
+        if var_name == 'Q':
+            return numpy.array([self.toym.Q]*len(indices))
+            
+        return "unknown var"
 
 
     """
