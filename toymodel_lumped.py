@@ -4,8 +4,7 @@ import numpy as np
 import ConfigParser
 from datetime import datetime
 from datetime import timedelta
-import xarray as xr
-
+from netCDF4 import Dataset
 
 class mytoymodel(object):
 
@@ -44,17 +43,18 @@ class mytoymodel(object):
         self.var_out = ["Q"]
 
         #Import input datasets (precipitation) calculate 1 value for each timestep (lumped model)
-        self.ds = xr.open_dataset('precipitation.nc')
+        self.ds = Dataset('precipitation.nc')
 
-        prec = self.ds['precipitation']
-        prec_sum = prec.sum(dim='lat')
-        prec_sum = prec_sum.sum(dim='lon')
-        prec_sum.reset_coords(drop=True)
+        prec_mask = self.ds['precipitation'][...]
+        prec_sum = prec_mask.sum(axis=-1)
+        prec_sum = prec_sum.sum(axis=-1)
+#        prec_sum.reset_coords(drop=True)
         self.prec_sum = prec_sum
 
         #Create empty array for modelrun
         self.Q = np.zeros(0)
-        self.prec = np.array(self.prec_sum.values[0])
+        self.prec = np.array(self.prec_sum[0])
+        print self.prec
 
         #Set grid shape for BMI
         grid_x = config.getfloat('centroid', 'x')
@@ -85,10 +85,12 @@ class mytoymodel(object):
 
             #Select current date based on tstart and current timestep
             self.tdate = datetime.strptime(self.tstart, "%Y-%m-%d") + timedelta(days=self.current+1)
+            print self.tdate
             self.tdate = datetime.strftime(self.tdate, "%Y-%m-%d")
+            print self.tdate,"<"
 
             #Retrieve input for current timestep
-            self.prec = self.prec_sum.sel(time=self.tdate).values
+            self.prec = self.prec_sum[self.current+1]
 
             #Calculate output for current timestep
             self.Q = (((self.prec / 1000)/ 86400) * self.Area)
