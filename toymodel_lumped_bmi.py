@@ -141,9 +141,7 @@ class toy_bmi(bmi.Bmi):
     def get_grid_rank(self, grid_id):
         """Get number of dimensions of the computational grid.
         """
-        log = 'No get_grid_rank, get_grid_size, get_grid_type implemented'
-
-        return log
+        return 0
 
 
     def get_grid_size(self, grid_id):
@@ -151,7 +149,7 @@ class toy_bmi(bmi.Bmi):
         """
         log = 'No get_grid_rank, get_grid_size, get_grid_type implemented'
 
-        return log
+        return 1
 
 
     def get_grid_type(self, grid_id):
@@ -159,7 +157,7 @@ class toy_bmi(bmi.Bmi):
         """
         log = 'No get_grid_rank, get_grid_size, get_grid_type implemented'
 
-        return log
+        return "uniform_rectilinear"
 
 
     def get_grid_shape(self):
