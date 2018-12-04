@@ -108,7 +108,7 @@ class toy_bmi(bmi.Bmi):
         """Current time of the model.
         """
 
-        return self.toym.tstep_nmbr
+        return self.toym.current
 
 
     def get_end_time(self):
