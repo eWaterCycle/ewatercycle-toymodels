@@ -167,21 +167,21 @@ class toy_bmi(bmi.Bmi):
         return self.toym.grid_shape
 
 
-    def get_grid_x(self):
+    def get_grid_x(self, grid_id):
         """Get coordinates of grid nodes in the streamwise direction.
         """
 
         return self.toym.grid_x
 
 
-    def get_grid_y(self):
+    def get_grid_y(self, grid_id):
         """Get coordinates of grid nodes in the transverse direction.
         """
 
         return self.toym.grid_y
 
 
-    def get_grid_z(self):
+    def get_grid_z(self, grid_id):
         """Get coordinates of grid nodes in the normal direction.
         """
 
