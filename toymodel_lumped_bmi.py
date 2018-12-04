@@ -157,7 +157,7 @@ class toy_bmi(bmi.Bmi):
         """
         log = 'No get_grid_rank, get_grid_size, get_grid_type implemented'
 
-        return "uniform_rectilinear"
+        return "UNKNOWN"
 
 
     def get_grid_shape(self):
