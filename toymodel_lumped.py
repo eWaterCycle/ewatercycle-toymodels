@@ -54,7 +54,6 @@ class mytoymodel(object):
         #Create empty array for modelrun
         self.Q = np.zeros(0)
         self.prec = np.array(self.prec_sum[0])
-        print self.prec
 
         #Set grid shape for BMI
         grid_x = config.getfloat('centroid', 'x')
@@ -76,7 +75,7 @@ class mytoymodel(object):
 
         self.var_output = {'Area': self.Area, 'prec': self.prec, 'Q': self.Q}
         
-        print "Initialization done"
+        #~ print("Initialization done")
 
 
     def model_run(self):
@@ -85,9 +84,7 @@ class mytoymodel(object):
 
             #Select current date based on tstart and current timestep
             self.tdate = datetime.strptime(self.tstart, "%Y-%m-%d") + timedelta(days=self.current+1)
-            print self.tdate
             self.tdate = datetime.strftime(self.tdate, "%Y-%m-%d")
-            print self.tdate,"<"
 
             #Retrieve input for current timestep
             self.prec = self.prec_sum[self.current+1]
@@ -96,7 +93,7 @@ class mytoymodel(object):
             self.Q = (((self.prec / 1000)/ 86400) * self.Area)
             self.Q = np.array(self.Q)
 
-            print 'Timestep:' + " " + str(self.current+1)
+            #~ print 'Timestep:' + " " + str(self.current+1)
 
             #Get variables with BMI
             self.var_output = {'Area': self.Area, 'prec': self.prec, 'Q': self.Q}
